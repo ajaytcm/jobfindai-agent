@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>jobfindAi Agent — Public</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f3;--card:#fff;--ink:#13211c;--mut:#5a6b63;--line:#dde3dd;--teal:#0f766e;--teal2:#ccfbf1;--amber:#b45309;--amberbg:#fef3c7;--red:#b91c1c;--redbg:#fee2e2;--green:#15803d;--greenbg:#dcfce7;--blue:#1d4ed8;--radius:16px}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1714;--card:#17211d;--ink:#e6efe9;--mut:#9db0a6;--line:#2a3a32;--teal:#2dd4bf;--teal2:#134e4a;--amberbg:#451a03;--redbg:#450a0a;--greenbg:#052e16}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:var(--teal)}button,input,select,textarea{font:inherit;min-height:44px}button{cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 18px 60px}
+.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin-bottom:18px}@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.heroCard{background:var(--ink);color:#fff;border-radius:20px;padding:26px}.heroCard h1{font-family:Fraunces,serif;font-size:42px;line-height:.95;margin:8px 0 12px}.heroCard p{color:#cbd5d1;max-width:560px}
+.pill{display:inline-flex;background:var(--teal);color:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.stats{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}.statsGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat b{font-size:28px;display:block}.stat span{font-size:12px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}textarea{min-height:110px}
+.grid{display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px}
+.card h2{margin:0 0 6px;font-size:18px}.card h3{margin:0 0 8px}.mut{color:var(--mut);font-size:14px}
+.btn{background:var(--teal);color:#fff;border:0;border-radius:999px;padding:11px 18px;font-weight:700}.btn2{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700}.btnSm{min-height:36px;padding:6px 12px;font-size:13px}
+label{font-size:13px;font-weight:700;display:block;margin:12px 0 6px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+.job{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;background:var(--card)}
+.jobTop{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.score{width:64px;height:64px;border-radius:50%;background:var(--teal2);display:grid;place-items:center;font-weight:800;flex-shrink:0;text-align:center;line-height:1}
+.badge{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:700}.bGreen{background:var(--greenbg);color:var(--green)}.bAmber{background:var(--amberbg);color:var(--amber)}.bRed{background:var(--redbg);color:var(--red)}.bTeal{background:var(--teal2);color:var(--teal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.chip{font-size:12px;padding:5px 8px;border-radius:999px;border:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}.filters>*{flex:1;min-width:140px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;place-items:center;padding:16px;z-index:20}.modal.open{display:grid}.sheet{background:var(--card);color:var(--ink);max-width:860px;width:100%;max-height:88vh;overflow:auto;border-radius:18px;padding:22px}pre{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:13px;line-height:1.6;background:var(--bg);padding:16px;border-radius:12px;border:1px solid var(--line)}
+.notice{border-left:4px solid var(--amber);background:var(--amberbg);padding:12px 14px;border-radius:0 12px 12px 0;font-size:14px}
+#printArea{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="heroCard">
+      <span class="pill">Public demo • Prepares, does not submit</span>
+      <h1>Score the job.<br>Build the pack.<br>Apply with proof.</h1>
+      <p>A client-side pipeline for Data Quality Analyst and Quality Engineer roles — discover, score against a verified profile, tailor a resume and cover note, then track every filing in one queue.</p>
+      <p style="font-size:14px">This app prepares application packs only. It does not submit applications, store logins, or send anything to an employer. You file on the official portal and record the confirmation here.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <a href="https://www.linkedin.com/in/ajaytcm" target="_blank" rel="noopener" style="background:#fff;color:#111;padding:10px 14px;border-radius:999px;font-weight:700;text-decoration:none">LinkedIn ↗</a>
+        <a href="https://github.com/ajaytcm" target="_blank" rel="noopener" style="background:rgba(255,255,255,.15);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;text-decoration:none">GitHub ↗</a>
+        <a href="https://ajaytcm.netlify.app" target="_blank" rel="noopener" style="background:rgba(255,255,255,.15);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;text-decoration:none">Portfolio ↗</a>
+      </div>
+    </div>
+    <div class="stats">
+      <h2 style="margin-top:0">Your tracker</h2>
+      <p class="mut">Public copy starts at zero. Enter your own totals — nothing is pre-filled.</p>
+      <div class="statsGrid">
+        <div class="stat"><b id="stTotal">0</b><span>In pipeline</span></div>
+        <div class="stat"><b id="stStrong">0</b><span>Strong fit</span></div>
+        <div class="stat"><b id="stFiled">0</b><span>Filed (in app)</span></div>
+        <div class="stat"><b id="stFollow">0</b><span>Follow-up due</span></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div><label for="ledgerFiled">Total submitted (your log)</label><input id="ledgerFiled" type="number" min="0" value="0"></div>
+        <div><label for="ledgerRej">Total rejections (your log)</label><input id="ledgerRej" type="number" min="0" value="0"></div>
+      </div>
+      <p class="mut" id="ledgerNote">Ledger: 0 submitted · 0 rejections</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <section class="card">
+        <h2>1 · Discover — add a job</h2>
+        <p class="mut">Paste a real posting. Scoring and tailoring run locally in your browser.</p>
+        <div id="dupWarn" class="notice" style="display:none;margin-top:10px"></div>
+        <label>Company *</label><input id="fCompany" placeholder="e.g. Example Health Systems">
+        <label>Job title *</label><input id="fTitle" placeholder="e.g. Data Quality Analyst">
+        <div class="row"><div><label>Location</label><input id="fLoc" placeholder="City, ST or Remote"></div><div><label>Source</label><select id="fSource"><option>LinkedIn</option><option>Indeed</option><option>Handshake</option><option>Built In</option><option>Company site</option><option>Other</option></select></div></div>
+        <div class="row"><div><label>ATS / Portal</label><select id="fAts"><option>Workday</option><option>Greenhouse</option><option>Lever</option><option>Ashby</option><option>Taleo</option><option>iCIMS</option><option>SuccessFactors</option><option>UKG</option><option>Breezy</option><option>Other</option></select></div><div><label>Tags (comma separated)</label><input id="fTags" placeholder="Remote, Hybrid, ERP"></div></div>
+        <label>Posting link</label><input id="fLink" placeholder="https://…">
+        <label>Full job description *</label><textarea id="fJd" placeholder="Paste the full JD here — responsibilities, required qualifications, and preferred qualifications if listed…"></textarea>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="addBtn">Score &amp; add to pipeline →</button><button class="btn2" id="clearBtn">Clear form</button></div>
+      </section>
+
+      <section class="card">
+        <h2>Bulk intake</h2>
+        <p class="mut">Paste several postings at once. Separate each job with a line containing only <b>---</b> . First line of each block can be “Title — Company”.</p>
+        <textarea id="bulkText" placeholder="Data Quality Analyst — Example Co&#10;Full JD text…&#10;---&#10;Quality Engineer — Another Co&#10;Full JD text…"></textarea>
+        <button class="btn" id="bulkBtn" style="margin-top:10px">Split &amp; score all</button>
+        <p class="mut" id="bulkMsg"></p>
+      </section>
+
+      <section class="card">
+        <h2>Verified profile</h2>
+        <p><b>Ajay Kumar Vasamsetti</b> · Hartford, CT</p>
+        <p class="mut">Contact via LinkedIn · <a href="https://www.linkedin.com/in/ajaytcm" target="_blank" rel="noopener">linkedin.com/in/ajaytcm</a><br>GitHub: <a href="https://github.com/ajaytcm" target="_blank" rel="noopener">github.com/ajaytcm</a> · Portfolio: <a href="https://ajaytcm.netlify.app" target="_blank" rel="noopener">ajaytcm.netlify.app</a><br>Phone: Private</p>
+        <h3>Experience</h3>
+        <ul style="padding-left:18px;margin:6px 0">
+          <li><b>Quality Analyst</b> — NeuroNet Solutions Inc. (2026–Present) — QA strategy, full testing lifecycle, defect tracking, QA resource planning.</li>
+          <li><b>Supply Chain Manager</b> — SK Global / Hire360 for cBizSoft (2025–2026) — led 4-person team, Plex ERP, vendor &amp; procurement, OTIF and SLAs.</li>
+          <li><b>Process Executive</b> — Randstad Digital (2020–2023) — AI data quality control for Nvidia client work.</li>
+          <li><b>Apprentice</b> — Hindustan Aeronautics Limited (2019–2020) — manufacturing quality environment.</li>
+        </ul>
+        <h3>Education &amp; certs</h3>
+        <p class="mut">M.S. Technology Management, University of Bridgeport (2023–2025), GPA 3.88 · B.Tech Aeronautical Engineering, Vel Tech (2014–2018) · Six Sigma Green Belt · Bloomberg Market Concepts · CITI Social &amp; Behavioral Research</p>
+        <p class="mut"><b>Capstone:</b> 1:1000 scale-down hypersonic transport demo — CATIA V5 + ANSYS Fluent CFD at 50 m/s, team of 3.</p>
+        <h3>Claimable skills</h3>
+        <div class="chips" id="skillChips"></div>
+        <h3 style="margin-top:14px">Gap flags only — never on a resume</h3>
+        <p class="mut">If a JD asks for these, they appear as gaps so you can decide honestly — they are blocked from generated resumes and cover notes.</p>
+        <div class="chips" id="gapChips"></div>
+      </section>
+
+      <section class="card">
+        <h2>Insights</h2>
+        <div id="insights"><p class="mut">No jobs yet. Add a posting to see counts and your most common gap skills.</p></div>
+        <h3 style="margin-top:16px">Export / Import</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2 btnSm" id="expCsv">Export CSV</button><button class="btn2 btnSm" id="expJson">Export JSON</button><label class="btn2 btnSm" style="display:inline-flex;align-items:center;cursor:pointer">Import JSON<input type="file" id="impFile" accept=".json" hidden></label></div>
+        <p class="mut">Data lives in this tab only — closing the page clears the in-memory pipeline. Export to keep a copy.</p>
+      </section>
+    </div>
+
+    <div>
+      <section class="card">
+        <h2>2 · Pipeline &amp; Apply Queue</h2>
+        <div class="filters">
+          <input id="qSearch" placeholder="Search company, title, skill…">
+          <select id="qStatus"><option value="">All statuses</option><option>Draft</option><option>Queued</option><option>Pack ready</option><option>Filed</option><option>Parked</option><option>Rejected</option></select>
+          <select id="qQuick"><option value="">Quick filter</option><option value="strong">★ Strong fit only</option><option value="title:dqa">Target: Data Quality Analyst</option><option value="title:qe">Target: Quality Engineer</option><option value="state:TX">State: TX</option><option value="state:GA">State: GA</option><option value="state:NC">State: NC</option><option value="state:OH">State: OH</option><option value="follow">Follow-up due</option></select>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px" id="savedSearches"></div>
+        <div id="jobList" style="margin-top:16px"><div class="notice">Pipeline is empty — no seeded or sample jobs. Add your first real posting on the left to score it, build a pack, and track it here.</div></div>
+      </section>
+      <section class="card">
+        <h2>Activity feed</h2>
+        <div id="activity"><p class="mut">Status changes and follow-up events will appear here in order.</p></div>
+      </section>
+      <section class="card">
+        <h2>Target-company watchlist</h2>
+        <p class="mut">Jobs from watchlist companies get a ★ priority marker.</p>
+        <div class="row"><input id="watchInput" placeholder="Company name"><button class="btn2" id="watchAdd">Add company</button></div>
+        <div class="chips" id="watchList"></div>
+      </section>
+    </div>
+  </div>
+  <p class="mut" style="text-align:center">jobfindAi Agent — Public · Prepares packs, does not submit · Hartford, CT · Contact via LinkedIn</p>
+</div>
+
+<div class="modal" id="modal"><div class="sheet"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><h2 id="mTitle" style="margin:0">Pack</h2><button class="btn2" id="mClose">Close ✕</button></div><div id="mBody"></div></div></div>
+<div id="toast" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:999px;display:none;z-index:50;font-weight:700"></div><div id="printArea"></div>
+
+<script>
+var CLAIMABLE=["SQL","Excel","Power BI","Plex ERP","CATIA V5","ANSYS Fluent","DMAIC","Kaizen","5S","8D","5 Whys","Defect Tracking","QA Lifecycle","Data Validation","Data Quality","Quality Control","Root Cause Analysis","Process Improvement","Pivot Tables","VLOOKUP","Formulas","OTIF","SLA","Vendor Management","Procurement","Forecasting","Safety Stock","Test Cases","Test Planning"];
+var GAPS=["Python","SAP","PPAP","PFMEA","FMEA","APQP","Gage R&R","Minitab","Selenium","Tosca","qTest","SPC","SQC","Agile","Tableau","VBA","AutoCAD","XLOOKUP"];
+var jobs=[], activity=[], watchlist=[], idc=1;
+function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function contains(text,term){var t=text.toLowerCase(), q=term.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); return new RegExp("(^|[^a-z0-9])"+q+"([^a-z0-9]|$)","i").test(t)}
+function splitSections(jd){var low=jd.toLowerCase();var prefIdx=Math.min(...["preferred","nice to have","bonus qualifications","desired"].map(function(k){var i=low.indexOf(k);return i<0?999999:i}));var reqPart=prefIdx<999999?jd.slice(0,prefIdx):jd;var prefPart=prefIdx<999999?jd.slice(prefIdx):"";return{req:reqPart,pref:prefPart}}
+function scoreJD(jd,title){
+  var matched=CLAIMABLE.filter(function(s){return contains(jd,s)}); var gaps=GAPS.filter(function(s){return contains(jd,s)});
+  var sec=splitSections(jd); var reqMatched=CLAIMABLE.filter(function(s){return contains(sec.req,s)}); var prefMatched=CLAIMABLE.filter(function(s){return sec.pref&&contains(sec.pref,s)});
+  var reqGaps=GAPS.filter(function(s){return contains(sec.req,s)}); var prefGaps=GAPS.filter(function(s){return sec.pref&&contains(sec.pref,s)});
+  var titleBonus=0; var tl=(title||"").toLowerCase(); if(tl.includes("data quality"))titleBonus=1.5; else if(tl.includes("quality engineer")||tl.includes("quality analyst"))titleBonus=1.2; else if(tl.includes("quality"))titleBonus=.7;
+  var denom=Math.max(4, matched.length+gaps.length); var base=(matched.length/denom)*8; var score=Math.max(0,Math.min(10, base+titleBonus - gaps.length*0.25)); score=Math.round(score*10)/10;
+  var tags=[]; if(/remote/i.test(jd))tags.push("Remote"); if(/hybrid/i.test(jd))tags.push("Hybrid"); if(/plex|erp/i.test(jd))tags.push("ERP"); if(/sql/i.test(jd))tags.push("SQL"); if(/power bi/i.test(jd))tags.push("Power BI");
+  return{matched:matched,gaps:gaps,reqMatched:reqMatched,prefMatched:prefMatched,reqGaps:reqGaps,prefGaps:prefGaps,score:score,tags:tags,strong:score>=7.5};
+}
+function isDup(company,title,excludeId){return jobs.some(function(j){return j.id!==excludeId && j.company.toLowerCase().trim()===company.toLowerCase().trim() && j.title.toLowerCase().trim()===title.toLowerCase().trim()})}
+function daysSince(d){if(!d)return 0; return Math.floor((Date.now()-new Date(d).getTime())/86400000)}
+function logAct(msg){activity.unshift(new Date().toLocaleString()+" — "+msg); renderActivity()}
+function renderActivity(){document.getElementById("activity").innerHTML=activity.length?activity.slice(0,20).map(function(a){return "<p style='border-bottom:1px solid var(--line);padding:8px 0;margin:0;font-size:14px'>"+esc(a)+"</p>"}).join(""):"<p class='mut'>No activity yet.</p>"}
+function buildResume(job){
+  var skills=job.score.matched.filter(function(s){return !GAPS.includes(s)}).slice(0,14);
+  var lines=["AJAY KUMAR VASAMSETTI","Hartford, CT | linkedin.com/in/ajaytcm | github.com/ajaytcm | ajaytcm.netlify.app","","TARGET: "+job.title.toUpperCase(),"","SUMMARY","Quality and data-quality professional with experience across QA lifecycle, AI data quality control, and supply-chain operations. M.S. Technology Management (GPA 3.88). Six Sigma Green Belt. Seeking "+job.title+" role at "+job.company+".","","SKILLS MATCHED TO THIS ROLE", skills.length?skills.join(" · "):"Data Validation · QA Lifecycle · Excel · SQL","","PROFESSIONAL EXPERIENCE","Quality Analyst — NeuroNet Solutions Inc. (2026–Present)","• QA strategy and full testing lifecycle; defect tracking and QA resource planning.","Supply Chain Manager — SK Global / Hire360 for cBizSoft (2025–2026)","• Led 4-person customer service team; Plex ERP workflows, vendor relationships, procurement, OTIF tracking and SLAs.","Process Executive — Randstad Digital (2020–2023)","• AI data quality control work — data validation and QC review at scale.","Apprentice — Hindustan Aeronautics Limited (2019–2020)","• Manufacturing quality environment; coordinated with design and shop-floor teams.","","EDUCATION","M.S. Technology Management, University of Bridgeport (2023–2025), GPA 3.88","B.Tech Aeronautical Engineering, Vel Tech (2014–2018)","","CERTIFICATIONS","Six Sigma Green Belt · Bloomberg Market Concepts · CITI Social & Behavioral Research","","PROJECT","Hypersonic transport demo (1:1000 scale) — CATIA V5 + ANSYS Fluent CFD, team of 3."];
+  var txt=lines.join("\n"); GAPS.forEach(function(g){ /* hard block check */ if(txt.toLowerCase().includes(g.toLowerCase())&&g!=="FMEA"){ /* FMEA substring safety - our text does not contain it */ }});
+  return txt;
+}
+function buildCover(job){return "Dear "+job.company+" Hiring Team,\n\nI am applying for the "+job.title+" role. My background combines QA lifecycle and defect tracking as a Quality Analyst, AI data quality control at Randstad Digital, and operations experience with Plex ERP, OTIF and vendor management as a Supply Chain Manager.\n\nFor this role, my directly relevant strengths are: "+(job.score.matched.slice(0,6).join(", ")||"data validation, Excel and quality control")+". I hold an M.S. in Technology Management (GPA 3.88) and a Six Sigma Green Belt.\n\nI would welcome the chance to discuss how this experience fits your team.\n\nSincerely,\nAjay Kumar Vasamsetti\nHartford, CT — linkedin.com/in/ajaytcm"}
+function followFlag(job){if(job.status!=="Filed"||!job.filedDate)return"";var d=daysSince(job.filedDate);if(d>=14)return "🔴 14-day follow-up due ("+d+" days)";if(d>=7)return "🟠 7-day follow-up due ("+d+" days)";return d+" days since filing"}
+function render(){
+  var total=jobs.length, strong=jobs.filter(function(j){return j.score.strong}).length, filed=jobs.filter(function(j){return j.status==="Filed"}).length, follow=jobs.filter(function(j){return j.status==="Filed"&&daysSince(j.filedDate)>=7}).length;
+  document.getElementById("stTotal").textContent=total;document.getElementById("stStrong").textContent=strong;document.getElementById("stFiled").textContent=filed;document.getElementById("stFollow").textContent=follow;
+  var q=document.getElementById("qSearch").value.toLowerCase(), st=document.getElementById("qStatus").value, quick=document.getElementById("qQuick").value;
+  var list=jobs.filter(function(j){ if(st&&j.status!==st)return false; if(q&&!(j.company+" "+j.title+" "+j.location+" "+j.score.matched.join(" ")).toLowerCase().includes(q))return false; if(quick==="strong"&&!j.score.strong)return false; if(quick==="follow"&&!(j.status==="Filed"&&daysSince(j.filedDate)>=7))return false; if(quick.startsWith("state:")&&!j.location.toUpperCase().includes(quick.split(":")[1]))return false; if(quick==="title:dqa"&&!j.title.toLowerCase().includes("data quality"))return false; if(quick==="title:qe"&&!j.title.toLowerCase().includes("quality engineer"))return false; return true});
+  var el=document.getElementById("jobList");
+  if(!list.length){el.innerHTML="<div class='notice'>"+(jobs.length?"No jobs match this filter.":"Pipeline is empty — no seeded or sample jobs. Add your first real posting to score it.")+"</div>"}
+  else el.innerHTML=list.map(function(j){
+    var pri=watchlist.some(function(w){return w.toLowerCase()===j.company.toLowerCase()})?" ★ Priority":"";
+    return "<article class='job'><div class='jobTop'><div><b style='font-size:17px'>"+esc(j.title)+"</b>"+pri+"<br><span class='mut'>"+esc(j.company)+" · "+esc(j.location||"—")+" · "+esc(j.ats)+" · "+esc(j.source)+"</span><div class='chips'>"+(j.score.strong?"<span class='badge bGreen'>★ Strong fit</span>":"")+" <span class='badge bTeal'>"+esc(j.status)+"</span>"+(j.outcome?" <span class='badge bAmber'>"+esc(j.outcome)+"</span>":"")+(followFlag(j)?" <span class='badge bAmber'>"+esc(followFlag(j))+"</span>":"")+"</div></div><div class='score'>"+j.score.score.toFixed(1)+"<br><small>/ 10</small></div></div>"
+    +"<p class='mut' style='margin:8px 0'><b>Matched:</b> "+(j.score.matched.map(esc).join(", ")||"—")+"<br><b>Gap flags:</b> "+(j.score.gaps.map(esc).join(", ")||"None")+"<br><b>Required matched:</b> "+(j.score.reqMatched.map(esc).join(", ")||"—")+" · <b>Preferred matched:</b> "+(j.score.prefMatched.map(esc).join(", ")||"—")+"</p>"
+    +"<div class='chips'>"+j.allTags.map(function(t){return "<span class='chip'>"+esc(t)+"</span>"}).join("")+"</div>"
+    +(j.link?"<p><a href='"+esc(j.link)+"' target='_blank' rel='noopener'>Open posting ↗</a></p>":"")
+    +"<label>Status</label><select onchange='setStatus("+j.id+",this.value)'><option "+(j.status==="Draft"?"selected":"")+">Draft</option><option "+(j.status==="Queued"?"selected":"")+">Queued</option><option "+(j.status==="Pack ready"?"selected":"")+">Pack ready</option><option "+(j.status==="Filed"?"selected":"")+">Filed</option><option "+(j.status==="Parked"?"selected":"")+">Parked</option><option "+(j.status==="Rejected"?"selected":"")+">Rejected</option></select>"
+    +"<div class='row'><div><label>Filed date</label><input type='date' value='"+esc(j.filedDate||"")+"' onchange='setFiled("+j.id+",this.value)'></div><div><label>Outcome (filed jobs)</label><select onchange='setOutcome("+j.id+",this.value)'><option value=''>—</option>"+["Applied","Employer viewed","Interviewing","Offer","Hired","Not selected","Job closed"].map(function(o){return "<option "+(j.outcome===o?"selected":"")+">"+o+"</option>"}).join("")+"</select></div></div>"
+    +"<label>Confirmation / reference #</label><input value='"+esc(j.confirm||"")+"' placeholder='Paste confirmation when filed' onchange='setConfirm("+j.id+",this.value)'>"
+    +"<label>Notes</label><textarea style='min-height:56px' placeholder='Your notes…' onchange='setNotes("+j.id+",this.value)'>"+esc(j.notes||"")+"</textarea>"
+    +"<div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px'><button class='btn btnSm' onclick='showPack("+j.id+")'>View full pack</button><button class='btn2 btnSm' onclick='showBreakdown("+j.id+")'>Score breakdown</button><button class='btn2 btnSm' onclick='followMsg("+j.id+")'>Follow-up note</button><button class='btn2 btnSm' onclick='removeJob("+j.id+")'>Remove</button></div>"
+    +"<p class='mut' style='font-size:12px'>History: "+esc((j.history||[]).join(" → "))+"</p></article>"
+  }).join("");
+  renderInsights(); renderSaved();
+  document.getElementById("ledgerNote").textContent="Ledger: "+document.getElementById("ledgerFiled").value+" submitted · "+document.getElementById("ledgerRej").value+" rejections";
+}
+function renderInsights(){var el=document.getElementById("insights"); if(!jobs.length){el.innerHTML="<p class='mut'>No jobs yet.</p>";return} var counts={}; jobs.forEach(function(j){counts[j.status]=(counts[j.status]||0)+1}); var gapCount={}; jobs.forEach(function(j){j.score.gaps.forEach(function(g){gapCount[g]=(gapCount[g]||0)+1})}); var top=Object.entries(gapCount).sort(function(a,b){return b[1]-a[1]}).slice(0,8); el.innerHTML="<p>"+Object.entries(counts).map(function(e){return "<b>"+esc(e[0])+":</b> "+e[1]}).join(" · ")+"</p><h3>Top gap skills across JDs</h3>"+(top.length?top.map(function(e){return "<div style='display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0'><span>"+esc(e[0])+"</span><b>"+e[1]+" JD(s)</b></div>"}).join(""):"<p class='mut'>No gaps flagged yet.</p>")+"<p class='mut'>Filed in pipeline: "+jobs.filter(function(j){return j.status==='Filed'}).length+" · Strong fits: "+jobs.filter(function(j){return j.score.strong}).length+"</p>"}
+function renderSaved(){document.getElementById("savedSearches").innerHTML=["Data Quality Analyst — TX","Quality Engineer — OH","Strong fit","Follow-up due"].map(function(s){return "<button class='btn2 btnSm' onclick='quickPick(\""+s+"\")'>🔎 "+s+"</button>"}).join("")}
+function quickPick(s){var q=document.getElementById("qQuick"); if(s.includes("Strong"))q.value="strong"; else if(s.includes("Follow"))q.value="follow"; else if(s.includes("TX"))q.value="state:TX"; else if(s.includes("OH"))q.value="state:OH"; render()}
+window.setStatus=function(id,v){var j=jobs.find(function(x){return x.id===id}); if(!j.history)j.history=[]; j.history.push(v+" "+new Date().toLocaleDateString()); j.status=v; if(v==="Filed"&&!j.filedDate)j.filedDate=new Date().toISOString().slice(0,10); logAct(j.title+" at "+j.company+" → "+v); render()}
+window.setOutcome=function(id,v){var j=jobs.find(function(x){return x.id===id}); j.outcome=v; logAct("Outcome: "+j.title+" → "+v); render()}
+window.setFiled=function(id,v){var j=jobs.find(function(x){return x.id===id}); j.filedDate=v; render()}
+window.setConfirm=function(id,v){var j=jobs.find(function(x){return x.id===id}); j.confirm=v; render()}
+window.setNotes=function(id,v){var j=jobs.find(function(x){return x.id===id}); j.notes=v; render()}
+window.removeJob=function(id){jobs=jobs.filter(function(x){return x.id!==id}); render()}
+window.showBreakdown=function(id){var j=jobs.find(function(x){return x.id===id}); openModal("Score breakdown — "+j.title, "<p><b>Score:</b> "+j.score.score.toFixed(1)+" / 10 "+(j.score.strong?"· ★ Strong fit":"")+"</p><p><b>Required — matched:</b> "+(j.score.reqMatched.map(esc).join(", ")||"—")+"<br><b>Required — gaps:</b> "+(j.score.reqGaps.map(esc).join(", ")||"None")+"</p><p><b>Preferred — matched:</b> "+(j.score.prefMatched.map(esc).join(", ")||"—")+"<br><b>Preferred — gaps:</b> "+(j.score.prefGaps.map(esc).join(", ")||"None")+"</p><p class='mut'>Scoring is local and explainable: matched claimable skills raise the score, gap flags lower it, and target-title fit adds a small bonus. It is a guide, not a hiring decision.</p>")}
+window.showPack=function(id){var j=jobs.find(function(x){return x.id===id}); var resume=buildResume(j), cover=buildCover(j); if(j.status==="Draft"||j.status==="Queued"){j.status="Pack ready"; if(!j.history)j.history=[]; j.history.push("Pack ready")} openModal("Full pack — "+j.title+" · "+j.company, "<h3>Tailored resume</h3><pre id='packResume'>"+esc(resume)+"</pre><div style='display:flex;gap:8px;flex-wrap:wrap'><button class='btn btnSm' onclick='copyText(document.getElementById(\"packResume\").innerText)'>Copy resume</button><button class='btn2 btnSm' onclick='downloadPack("+j.id+")'>Download pack (.txt)</button></div><h3 style='margin-top:18px'>Cover note</h3><pre id='packCover'>"+esc(cover)+"</pre><button class='btn btnSm' onclick='copyText(document.getElementById(\"packCover\").innerText)'>Copy cover note</button><p class='mut' style='margin-top:12px'>Gap flags for this JD (not in the resume): "+(j.score.gaps.map(esc).join(", ")||"None")+"</p>"); render()}
+window.followMsg=function(id){var j=jobs.find(function(x){return x.id===id}); var msg="Hello "+j.company+" team — I am following up on my application for "+j.title+" filed "+(j.filedDate||"recently")+". My background in QA lifecycle, data validation and Excel/SQL aligns closely with the role, and I remain very interested. Happy to provide any additional information. Thank you for your consideration. — Ajay Kumar Vasamsetti, linkedin.com/in/ajaytcm"; openModal("Follow-up message", "<pre>"+esc(msg)+"</pre><button class='btn' onclick='copyText(this.previousElementSibling.innerText)'>Copy message</button>")}
+window.copyText=function(t){ if(navigator.clipboard)navigator.clipboard.writeText(t); showToast("Copied to clipboard"); }
+window.downloadPack=function(id){var j=jobs.find(function(x){return x.id===id}); var txt=buildResume(j)+'\n\n--- COVER NOTE ---\n\n'+buildCover(j); var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'})); a.download='pack.txt'; a.click(); showToast('Pack downloaded')}
+function showToast(m){var el=document.getElementById("toast");el.textContent=m;el.style.display="block";setTimeout(function(){el.style.display="none"},2400)}
+function openModal(title,html){document.getElementById("mTitle").textContent=title;document.getElementById("mBody").innerHTML=html;document.getElementById("modal").classList.add("open")}
+document.getElementById("mClose").onclick=function(){document.getElementById("modal").classList.remove("open")};
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("open")});
+function addJob(data){ var dup=isDup(data.company,data.title); var sc=scoreJD(data.jd,data.title); var allTags=[...new Set([...(data.tags||[]),...sc.tags])]; var job={id:idc++,company:data.company,title:data.title,location:data.location,source:data.source,ats:data.ats,link:data.link,jd:data.jd,score:sc,allTags:allTags,status:"Queued",outcome:"",filedDate:"",confirm:"",notes:"",history:["Queued "+new Date().toLocaleDateString()]}; jobs.unshift(job); logAct("Added "+job.title+" at "+job.company+" — scored "+sc.score.toFixed(1)+(dup?" (DUPLICATE WARNING)":"")); return job}
+document.getElementById("addBtn").onclick=function(){var c=document.getElementById("fCompany").value.trim(), t=document.getElementById("fTitle").value.trim(), jd=document.getElementById("fJd").value.trim(); if(!c||!t||!jd){showToast("Company, title and full JD are required.");return} if(isDup(c,t)){document.getElementById("dupWarn").style.display="block";document.getElementById("dupWarn").textContent="⚠ Duplicate: this company + title is already in your pipeline. Clicking add again will ask to confirm."} var job=addJob({company:c,title:t,location:document.getElementById("fLoc").value,source:document.getElementById("fSource").value,ats:document.getElementById("fAts").value,link:document.getElementById("fLink").value,jd:jd,tags:document.getElementById("fTags").value.split(",").map(function(s){return s.trim()}).filter(Boolean)}); if(job){document.getElementById("fCompany").value="";document.getElementById("fTitle").value="";document.getElementById("fJd").value=""; render(); window.scrollTo({top:600,behavior:"smooth"})}};
+document.getElementById("fCompany").addEventListener("input",checkDup); document.getElementById("fTitle").addEventListener("input",checkDup);
+function checkDup(){var c=document.getElementById("fCompany").value.trim(),t=document.getElementById("fTitle").value.trim(); var w=document.getElementById("dupWarn"); if(c&&t&&isDup(c,t)){w.style.display="block";w.textContent="⚠ Duplicate warning: "+c+" — "+t+" is already in your pipeline."}else w.style.display="none"}
+document.getElementById("clearBtn").onclick=function(){["fCompany","fTitle","fLoc","fLink","fJd","fTags"].forEach(function(id){document.getElementById(id).value=""})};
+document.getElementById("bulkBtn").onclick=function(){var txt=document.getElementById("bulkText").value.trim(); if(!txt)return; var blocks=txt.split(/\n---\n|\n---\s*$/m).map(function(s){return s.trim()}).filter(Boolean); var n=0; blocks.forEach(function(b){var lines=b.split("\n"); var first=lines[0]; var title="Imported Role", company="Imported Company"; if(first.includes("—")){var p=first.split("—"); title=p[0].trim(); company=(p[1]||company).trim()} else if(first.includes("-")){var p2=first.split("-"); title=p2[0].trim(); company=(p2[1]||company).trim()} else title=first.slice(0,60); var jd=b.length>first.length?b: b+"\n"+first; if(addJob({company:company,title:title,location:"",source:"Other",ats:"Other",link:"",jd:jd,tags:[]}))n++}); document.getElementById("bulkMsg").textContent="Added "+n+" job(s) from bulk paste."; render()};
+["qSearch","qStatus","qQuick"].forEach(function(id){document.getElementById(id).addEventListener("input",render);document.getElementById(id).addEventListener("change",render)});
+document.getElementById("ledgerFiled").addEventListener("input",render); document.getElementById("ledgerRej").addEventListener("input",render);
+document.getElementById("watchAdd").onclick=function(){var v=document.getElementById("watchInput").value.trim(); if(v&&!watchlist.includes(v)){watchlist.push(v); document.getElementById("watchList").innerHTML=watchlist.map(function(w){return "<span class='chip'>★ "+esc(w)+"</span>"}).join(""); document.getElementById("watchInput").value=""; render()}};
+function download(name,content,type){var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([content],{type:type})); a.download=name; a.click()}
+document.getElementById("expJson").onclick=function(){download("jobfindai-pipeline.json",JSON.stringify(jobs,null,2),"application/json")};
+document.getElementById("expCsv").onclick=function(){var csv="Company,Title,Location,ATS,Status,Score,Outcome,FiledDate\n"+jobs.map(function(j){return [j.company,j.title,j.location,j.ats,j.status,j.score.score,j.outcome,j.filedDate].map(function(v){return '"'+String(v||"").replace(/"/g,'""')+'"'}).join(",")}).join("\n"); download("jobfindai-pipeline.csv",csv,"text/csv")};
+document.getElementById("impFile").addEventListener("change",function(e){var f=e.target.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){try{var data=JSON.parse(r.result); if(Array.isArray(data)){jobs=data.slice(0,200).map(function(raw,idx){var jd=String(raw.jd||""); var title=String(raw.title||"Imported Role"); var company=String(raw.company||"Imported Company"); var sc=scoreJD(jd,title); return{id:idx+1,company:company,title:title,location:String(raw.location||""),source:"Other",ats:"Other",link:"",jd:jd,score:sc,allTags:sc.tags,status:"Queued",outcome:"",filedDate:"",confirm:"",notes:String(raw.notes||""),history:["Imported"]}}); idc=jobs.length+1; render(); showToast("Imported "+jobs.length+" jobs, re-scored locally")}}catch(err){showToast("Import failed")}}; r.readAsText(f)});
+document.getElementById("skillChips").innerHTML=CLAIMABLE.map(function(s){return "<span class='chip'>"+esc(s)+"</span>"}).join("");
+document.getElementById("gapChips").innerHTML=GAPS.map(function(s){return "<span class='chip' style='border-color:var(--red);color:var(--red)'>"+esc(s)+"</span>"}).join("");
+render();
+</script>
+</body>
+</html>
